@@ -1,0 +1,610 @@
+/* ===================================================================
+   Technical Drawing Sheet Automation — QSS Theme Template
+   ===================================================================
+   This file uses Python str.format() placeholders matching the THEME
+   dict keys in theme.py.  Do NOT use raw hex colors here — always
+   reference a token so the palette stays centralized.
+   =================================================================== */
+
+
+/* ── Top-level window ─────────────────────────────────────────────── */
+
+QMainWindow {{
+    background-color: {bg_app};
+    color: {text_primary};
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+}}
+
+QFrame#workspace, QFrame#floatingPanel, QFrame#selectionToolbar, QFrame#zoomPill {{
+    background-color: {bg_surface_elevated};
+    border: none;
+    border-radius: {radius};
+}}
+
+QLabel#cropHint {{
+    background-color: {bg_surface_elevated};
+    color: {text_primary};
+    border: 1px solid {accent_selection};
+    border-radius: {radius};
+    padding: 6px 12px;
+    font-size: 12px;
+}}
+
+QFrame#leftRail {{
+    background-color: {bg_panel};
+    border: none;
+    border-radius: {radius};
+}}
+
+QMainWindow::separator {{
+    background-color: {border_subtle};
+    width: 2px;
+    height: 2px;
+}}
+
+QMainWindow::separator:hover {{
+    background-color: {accent_primary};
+}}
+
+
+/* ── Menu bar ─────────────────────────────────────────────────────── */
+
+QMenuBar {{
+    background-color: {bg_panel};
+    color: {text_primary};
+    border-bottom: 1px solid {border_subtle};
+    padding: 2px 0px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+}}
+
+QMenuBar::item {{
+    padding: 4px 10px;
+    background: transparent;
+    border-radius: 4px;
+}}
+
+QMenuBar::item:selected {{
+    background-color: {accent_selection};
+}}
+
+QMenu {{
+    background-color: {bg_panel};
+    color: {text_primary};
+    border: 1px solid {border_subtle};
+    padding: 4px 0px;
+}}
+
+QMenu::item {{
+    padding: 6px 24px 6px 12px;
+}}
+
+QMenu::item:selected {{
+    background-color: {accent_selection};
+}}
+
+QMenu::separator {{
+    height: 1px;
+    background: {border_subtle};
+    margin: 4px 8px;
+}}
+
+
+/* ── Dock widgets ─────────────────────────────────────────────────── */
+
+QDockWidget {{
+    color: {text_primary};
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+    titlebar-close-icon: none;
+    titlebar-normal-icon: none;
+}}
+
+QDockWidget::title {{
+    background-color: {accent_primary};
+    color: {text_inverse};
+    padding: 6px 10px;
+    font-weight: bold;
+    border: none;
+    text-align: left;
+}}
+
+QDockWidget::close-button,
+QDockWidget::float-button {{
+    background: transparent;
+    border: none;
+    padding: 2px;
+}}
+
+QDockWidget::close-button:hover,
+QDockWidget::float-button:hover {{
+    background-color: {accent_primary_hover};
+    border-radius: 3px;
+}}
+
+QDockWidget > QWidget {{
+    background-color: {bg_panel};
+    border: 1px solid {border_strong};
+}}
+
+
+/* ── Toolbar ──────────────────────────────────────────────────────── */
+
+QToolBar {{
+    background-color: {bg_panel};
+    border-bottom: 1px solid {border_subtle};
+    padding: 3px;
+    spacing: 4px;
+}}
+
+QToolBar::separator {{
+    width: 1px;
+    background-color: {border_subtle};
+    margin: 4px 6px;
+}}
+
+QToolButton {{
+    background-color: transparent;
+    color: {text_primary};
+    border: 1px solid transparent;
+    border-radius: {radius};
+    padding: 5px 10px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 12px;
+}}
+
+QToolButton:hover {{
+    background-color: {accent_selection};
+    border-color: {border_subtle};
+}}
+
+QToolButton:pressed {{
+    background-color: {accent_primary};
+    color: {text_inverse};
+}}
+
+QToolButton:checked {{
+    background-color: {accent_primary};
+    color: {text_inverse};
+    border-color: {accent_primary};
+}}
+
+
+/* ── Push buttons ─────────────────────────────────────────────────── */
+
+QPushButton {{
+    background-color: {accent_primary};
+    color: {text_inverse};
+    border: none;
+    border-radius: {radius};
+    padding: 8px 20px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    min-height: 20px;
+}}
+
+QPushButton:hover {{
+    background-color: {accent_primary_hover};
+}}
+
+QPushButton:pressed {{
+    background-color: {accent_secondary};
+}}
+
+QPushButton:disabled {{
+    background-color: {border_strong};
+    color: {text_secondary};
+}}
+
+/* Secondary button variant — use objectName "secondaryButton" */
+QPushButton#secondaryButton {{
+    background-color: transparent;
+    color: {accent_primary};
+    border: 2px solid {accent_secondary};
+}}
+
+QPushButton#generateButton {{
+    background-color: {accent_primary};
+    color: {text_inverse};
+    border-radius: 18px;
+    font-weight: 700;
+    padding: 8px 18px;
+}}
+
+QToolButton#railButton {{
+    min-width: 36px;
+    min-height: 36px;
+    padding: 6px;
+}}
+
+QToolButton#railButton:checked {{
+    background-color: {accent_selection};
+    color: {text_inverse};
+}}
+
+QPushButton#secondaryButton:hover {{
+    background-color: {accent_selection};
+    border-color: {accent_primary};
+}}
+
+
+/* ── Line edits / text inputs ─────────────────────────────────────── */
+
+QLineEdit {{
+    background-color: {bg_app};
+    color: {text_primary};
+    border: 1px solid {border_subtle};
+    border-radius: {radius};
+    padding: 6px 10px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+    selection-background-color: {accent_selection};
+}}
+
+QLineEdit:focus {{
+    border: 2px solid {accent_secondary};
+}}
+
+QLineEdit:disabled {{
+    background-color: {bg_panel};
+    color: {text_secondary};
+}}
+
+QTextEdit {{
+    background-color: {bg_app};
+    color: {text_primary};
+    border: 1px solid {border_subtle};
+    border-radius: 4px;
+    padding: 6px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+    selection-background-color: {accent_selection};
+}}
+
+QTextEdit:focus {{
+    border: 2px solid {accent_secondary};
+}}
+
+
+/* ── Combo boxes ──────────────────────────────────────────────────── */
+
+QComboBox {{
+    background-color: {bg_app};
+    color: {text_primary};
+    border: 1px solid {border_subtle};
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+    min-height: 20px;
+}}
+
+QComboBox:focus {{
+    border: 2px solid {accent_secondary};
+}}
+
+QComboBox::drop-down {{
+    border: none;
+    width: 24px;
+}}
+
+QComboBox QAbstractItemView {{
+    background-color: {bg_panel};
+    color: {text_primary};
+    border: 1px solid {border_subtle};
+    selection-background-color: {accent_selection};
+    selection-color: {text_primary};
+    outline: none;
+}}
+
+
+/* ── Graphics view (canvas) ──────────────────────────────────────── */
+
+QGraphicsView {{
+    border: none;
+    border-radius: {radius};
+    background-color: {bg_canvas};
+}}
+
+
+/* ── Lists / trees ───────────────────────────────────────────────── */
+
+QListWidget, QTreeWidget {{
+    background-color: {bg_panel};
+    color: {text_primary};
+    border: none;
+    border-radius: {radius};
+    outline: none;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+}}
+
+QListWidget::item, QTreeWidget::item {{
+    padding: 5px 8px;
+    border-radius: 3px;
+}}
+
+QListWidget::item:selected, QTreeWidget::item:selected {{
+    background-color: {accent_selection};
+    color: {text_primary};
+}}
+
+QListWidget::item:hover, QTreeWidget::item:hover {{
+    background-color: {accent_selection};
+}}
+
+QListWidget#assetCardGrid {{
+    background: transparent;
+    padding: 4px;
+}}
+
+QListWidget#assetCardGrid::item {{
+    background-color: {bg_surface_elevated};
+    border: none;
+    border-radius: {radius};
+    padding: 8px;
+    margin: 2px;
+}}
+
+QListWidget#assetCardGrid::item:hover {{
+    background-color: {border_subtle};
+}}
+
+QListWidget#assetCardGrid::item:selected {{
+    background-color: {accent_selection};
+    color: {text_inverse};
+}}
+
+QHeaderView::section {{
+    background-color: {bg_panel};
+    color: {text_primary};
+    border: none;
+    border-bottom: 1px solid {border_subtle};
+    padding: 5px 8px;
+    font-weight: 600;
+}}
+
+
+/* ── Group boxes ──────────────────────────────────────────────────── */
+
+QGroupBox {{
+    background-color: {bg_panel};
+    border: 1px solid {border_strong};
+    border-radius: {radius};
+    margin-top: 12px;
+    padding-top: 16px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: {text_primary};
+}}
+
+QGroupBox::title {{
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 2px 10px;
+    color: {accent_primary};
+}}
+
+
+/* ── Scroll bars ──────────────────────────────────────────────────── */
+
+QScrollBar:vertical {{
+    background-color: {bg_panel};
+    width: 10px;
+    margin: 0px;
+    border-radius: 5px;
+}}
+
+QScrollBar::handle:vertical {{
+    background-color: {border_strong};
+    min-height: 30px;
+    border-radius: 5px;
+}}
+
+QScrollBar::handle:vertical:hover {{
+    background-color: {accent_secondary};
+}}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {{
+    height: 0px;
+}}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {{
+    background: none;
+}}
+
+QScrollBar:horizontal {{
+    background-color: {bg_panel};
+    height: 10px;
+    margin: 0px;
+    border-radius: 5px;
+}}
+
+QScrollBar::handle:horizontal {{
+    background-color: {border_strong};
+    min-width: 30px;
+    border-radius: 5px;
+}}
+
+QScrollBar::handle:horizontal:hover {{
+    background-color: {accent_secondary};
+}}
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {{
+    width: 0px;
+}}
+
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {{
+    background: none;
+}}
+
+
+/* ── Labels ───────────────────────────────────────────────────────── */
+
+QLabel {{
+    color: {text_primary};
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+}}
+
+QLabel#helpText {{
+    color: {text_secondary};
+    font-size: 11px;
+}}
+
+QLabel#panelTitle {{
+    color: {text_primary};
+    font-size: 18px;
+    font-weight: 700;
+}}
+
+QLabel#emptyState {{
+    color: {text_secondary};
+    background-color: {bg_surface_elevated};
+    border-radius: {radius};
+    padding: 28px 18px;
+    font-size: 13px;
+}}
+
+
+/* ── Tab widget ───────────────────────────────────────────────────── */
+
+QTabWidget::pane {{
+    border: 1px solid {border_strong};
+    background-color: {bg_panel};
+}}
+
+QTabBar::tab {{
+    background-color: {bg_app};
+    color: {text_secondary};
+    border: 1px solid {border_subtle};
+    border-bottom: none;
+    padding: 6px 16px;
+    margin-right: 2px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}}
+
+QTabBar::tab:selected {{
+    background-color: {bg_panel};
+    color: {accent_primary};
+    font-weight: 600;
+    border-bottom: 2px solid {accent_primary};
+}}
+
+QTabBar::tab:hover:!selected {{
+    background-color: {accent_selection};
+}}
+
+
+/* ── Spin boxes ───────────────────────────────────────────────────── */
+
+QSpinBox, QDoubleSpinBox {{
+    background-color: {bg_app};
+    color: {text_primary};
+    border: 1px solid {border_subtle};
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+}}
+
+QSpinBox:focus, QDoubleSpinBox:focus {{
+    border: 2px solid {accent_secondary};
+}}
+
+
+/* ── Status bar ───────────────────────────────────────────────────── */
+
+QStatusBar {{
+    background-color: {bg_panel};
+    color: {text_secondary};
+    border-top: 1px solid {border_subtle};
+    font-size: 12px;
+}}
+
+
+/* ── Log panel (severity-colored text) ────────────────────────────── */
+/* Apply these via objectName on the log QTextEdit / QListWidget.
+   Individual message colors are set programmatically using setTextColor()
+   or HTML spans, keyed to these token values — the selectors below
+   style the container itself. */
+
+QWidget#logPanel {{
+    background-color: {bg_panel};
+    border: 1px solid {border_strong};
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 12px;
+}}
+
+
+/* ── Tooltips ─────────────────────────────────────────────────────── */
+
+QToolTip {{
+    background-color: {accent_primary};
+    color: {text_inverse};
+    border: none;
+    padding: 5px 8px;
+    border-radius: 3px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 12px;
+}}
+
+
+/* ── Progress bar ─────────────────────────────────────────────────── */
+
+QProgressBar {{
+    background-color: {bg_app};
+    border: 1px solid {border_subtle};
+    border-radius: 4px;
+    text-align: center;
+    color: {text_primary};
+    font-size: 11px;
+    height: 18px;
+}}
+
+QProgressBar::chunk {{
+    background-color: {status_info};
+    border-radius: 3px;
+}}
+
+
+/* ── Excel side panel ─────────────────────────────────────────────── */
+/* The panel body is a live Excel window reparented into #excelHost, so
+   it paints itself — only the header bar around it is styled here. */
+
+QFrame#excelPanelWrapper {{
+    background-color: {bg_panel};
+    border: 1px solid {border_subtle};
+    border-radius: {radius};
+}}
+
+QFrame#excelPanelHeader {{
+    background-color: {bg_panel};
+    border-bottom: 1px solid {border_subtle};
+}}
+
+QFrame#excelPanelHeader QLabel#panelTitle {{
+    font-size: 14px;
+}}
+
+QFrame#excelPanelHeader QToolButton {{
+    min-width: 26px;
+    padding: 3px 6px;
+}}
+
+QFrame#excelPanelHeader QPushButton#generateButton {{
+    padding: 5px 16px;
+    font-size: 12px;
+}}
+
+QWidget#excelHost {{
+    background-color: {bg_canvas};
+}}

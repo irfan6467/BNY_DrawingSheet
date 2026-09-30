@@ -1,0 +1,55 @@
+# Manual Test Plan for Prerequisite Handling
+
+Since the target environment for this application is a client machine with strict permissions and varying states of readiness, these manual tests should be executed on a fresh Windows Virtual Machine (VM) representing the target environment.
+
+## Pre-requisites for testing:
+1. A Windows 10/11 VM (e.g. Hyper-V, VirtualBox).
+2. The bundled `TechnicalDrawingSheetSetup.exe` built via Inno Setup.
+3. The original `.dwg`, `.skp`, and `.pdf` template files to test imports.
+
+---
+
+### Test Case 1: Clean Install on Fresh VM
+**Objective:** Verify silent installers run without errors and setup a working environment.
+**Steps:**
+1. Revert VM to a clean state (no VC++ 2015-2022 redist, no ODA installed).
+2. Run `TechnicalDrawingSheetSetup.exe` (should prompt for admin privileges).
+3. Wait for installation to complete. Observe the "Installing prerequisites..." messages during setup.
+4. Launch the application from the desktop shortcut.
+5. **Expected Result:** App launches without the "DWG Support Incomplete" warning dialog.
+6. Try importing a `.dwg` file.
+7. **Expected Result:** DWG imports successfully and appears on the canvas.
+
+### Test Case 2: Broken ODA Installation Recovery
+**Objective:** Verify the startup health check detects a broken ODA install and the in-app repair flow fixes it.
+**Steps:**
+1. In the VM where the app is already installed, navigate to `C:\Program Files\ODA\ODAFileConverter 27.1.0\`.
+2. Delete or rename `OdaFileConverter.exe` to simulate a broken installation or aggressive antivirus quarantine.
+3. Launch the application.
+4. **Expected Result:** The "DWG Support Incomplete" warning dialog appears.
+5. Click "Continue" (Ignore).
+6. Try importing a `.dwg` file.
+7. **Expected Result:** Import fails gracefully, and a log message appears: "DWG import unavailable — ODA File Converter could not be installed...".
+8. Go to `Help -> Repair DWG Support...` in the menu.
+9. **Expected Result:** UAC prompt appears.
+10. Accept UAC prompt.
+11. **Expected Result:** After a brief delay (running the bundled MSI in the background), a success dialog "Repair Complete" appears.
+12. Try importing a `.dwg` file again.
+13. **Expected Result:** DWG imports successfully.
+
+### Test Case 3: VC++ Missing but Registry Intact (Edge Case)
+**Objective:** Verify the health check doesn't falsely assume VC++ is fine if the registry is broken, and repair still reinstalls it.
+**Steps:**
+1. On a test machine, corrupt the VC++ installation (e.g. by deleting `vcruntime140.dll` from System32).
+2. **Note:** Currently, `startup_check.py` primarily checks the registry for VC++. If the DLL is deleted but registry is intact, it might still report "ok". 
+3. Go to `Help -> Repair DWG Support...`
+4. Accept UAC prompt.
+5. **Expected Result:** The bundled `vc_redist.x64.exe` runs silently and replaces missing DLLs.
+
+### Test Case 4: Graceful Degradation
+**Objective:** Verify that other features still work even if DWG repair persistently fails.
+**Steps:**
+1. Break ODA as in Test Case 2.
+2. Launch the app, ignore the warning dialog.
+3. Import a `.jpg` or `.pdf` file.
+4. **Expected Result:** Image/PDF imports perfectly and can be assigned to slots, even though DWG is broken.

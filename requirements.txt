@@ -1,0 +1,20 @@
+# Technical Drawing Sheet Automation — dependencies
+#
+# Build the distributable with:  pyinstaller technical_drawing_sheet.spec
+# ODA File Converter and SketchUp are external installed applications,
+# not pip packages — the app calls them via subprocess and fails
+# gracefully with a clear log message if they aren't found.
+
+PySide6>=6.7
+Pillow>=10.0
+reportlab>=4.1
+pypdf>=4.0
+ezdxf[draw]>=1.3
+PyMuPDF>=1.24
+matplotlib>=3.8
+numpy
+openpyxl>=3.1
+pywin32>=306; sys_platform == "win32"
+
+# Build tooling (not needed to run from source)
+pyinstaller>=6.6

@@ -1,0 +1,65 @@
+{
+  "template_name": "bny_standard_a1",
+  "base_pdf_path": "bny_standard_a1_cropped.pdf",
+  "paper_size": "A1",
+  "orientation": "landscape",
+  "slots": {
+    "section": {
+      "x": 30,
+      "y": 30,
+      "w": 660,
+      "h": 560
+    },
+    "plan": {
+      "x": 700,
+      "y": 30,
+      "w": 660,
+      "h": 560
+    },
+    "elevation": {
+      "x": 30,
+      "y": 600,
+      "w": 660,
+      "h": 560
+    },
+    "view_3d_main_1": {
+      "x": 700,
+      "y": 600,
+      "w": 330,
+      "h": 280
+    },
+    "view_3d_main_2": {
+      "x": 1040,
+      "y": 600,
+      "w": 330,
+      "h": 280
+    },
+    "view_3d_row_2": [
+      {
+        "x": 700,
+        "y": 890,
+        "w": 220,
+        "h": 270
+      },
+      {
+        "x": 930,
+        "y": 890,
+        "w": 220,
+        "h": 270
+      },
+      {
+        "x": 1150,
+        "y": 890,
+        "w": 220,
+        "h": 270
+      }
+    ]
+  },
+  "callout_column": {
+    "x": 1394,
+    "y": 150,
+    "w": 250,
+    "h": 350,
+    "max_details": 8
+  }
+}
